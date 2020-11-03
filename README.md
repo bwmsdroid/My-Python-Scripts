@@ -1,2 +1,2 @@
 # My Python Scripts
- Scripts que preciso criar de acordo com minha necessidar. Geralmente por causa do pentest.
+ Scripts que preciso criar de acordo com minha necessidade. Geralmente por causa do pentest.
