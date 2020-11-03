@@ -1,5 +1,4 @@
-// WARNING! This file contains some subset of JS that is not supported by type inference.
-// You can try checking 'Transpile to ES5' checkbox if you want the types to be inferred
+// Arquivo depois de passar pelo http://www.jsnice.org/ e https://beautifier.io/
 'use strict';
 function getCookie(uri) {
   let _0x54b0df = document[`cookie`][`split`]("; ");
