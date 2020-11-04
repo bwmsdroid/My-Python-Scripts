@@ -1,4 +1,4 @@
-i_filename = "to_unpack.js"
+i_filename = "to_unpack"
 i_funcname = "_0x20a5('"
 i_big_arr = [
     "show",
@@ -576,7 +576,7 @@ i_big_arr = [
 ]
 
 with open(i_filename, 'r', encoding='UTF-8') as file:
-    with open("unpacked_file.js", 'w', encoding='UTF-8') as output:
+    with open("unpacked_file", 'w', encoding='UTF-8') as output:
         content = file.read()
         splitted_strings = content.split(i_funcname)
         splitted_strings_2 = []
