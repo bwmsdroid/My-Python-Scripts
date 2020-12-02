@@ -6,7 +6,7 @@ Steps do programa:
 - gera um nome aleatoria, afim de diminuir a detecção dos adms
 - pega o prefix do login + o ultimo numero do login e cria um email gmailnator
 - aleatoriza todos os pametros possiveis do request, exceto username e senha
-	-> mas nada impede de fazer aleatorio também
+- 	> mas nada impede de fazer aleatorio também
 - envia o request atravez de uma proxy
 - recebe e analisa se foi tudo correto
 - espera pelo email do gunz
