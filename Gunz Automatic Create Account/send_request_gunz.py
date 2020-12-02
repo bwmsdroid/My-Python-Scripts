@@ -106,29 +106,33 @@ print("[RESPONSE RECEBIDA!]")
 if len(response.text) < 10:
     print("talvez o servidor deles esteja offline!")
     exit()
-if response.text.find("foi reportado como um e-mail") != -1:  # 50123 success
+if response.text.find("reportado como um e-mail") != -1:  # 50123 success
     print("o email foi detectado!")
     exit()
-if response.text.find("Senha deve conter entre") != -1:
+if response.text.find("A <b>Senha</b> deve conter entre 6 e 18 caracteres") != -1:  # != -1 significa que achou
     print("erro na senha!")
     exit()
-if response.text.find("O Nome de Usuário (") != -1:
+if response.text.find("O <b>Nome de Usu&aacute;rio (") != -1:
     print("username ja usado")
     exit()
-if response.text.find("O E-mail (") != -1:
+if response.text.find("<b>E-mail (") != -1:
     print("email ja usado")
     exit()
+if response.text.find("encontra-se em uso") != -1:
+    print("algum erro de 'encontra-se em uso'")
+    exit()
+    # A Senha deve conter
 if response.text.find("Cadastro realizado com sucesso") == -1:
     print("erro, deu sucessou ou n?\n\n\n\n")
     print(response.text)
     exit()
-
+response.close()
 # opening for writing (only write if the request was sucessful)
-    configs_file = open("login_options.json", "w")
-    json.dump(configs, configs_file, indent=4)
-    configs_file.close()
+configs_file = open("login_options.json", "w")
+json.dump(configs, configs_file, indent=4)
+configs_file.close()
 
-    print("[SUCESSO AO REGISTRAR, ESPERANDO EMAIL DE CONFIRMAÇÃO!]")
+print("[SUCESSO AO REGISTRAR, ESPERANDO EMAIL DE CONFIRMAÇÃO!]")
 #### gmailnator get the sended email
 headers = {
     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -141,6 +145,9 @@ for x in range(0, 40):
     response = requests.request("POST", "https://www.gmailnator.com/mailbox/mailboxquery", headers=headers,
                                 data="csrf_gmailnator_token={}&action=LoadMailList&Email_address=".format(csrf) + email,
                                 verify=False)
+    if response.status_code != 204 and response.status_code != 200:
+        print("[ERRO CSRF]!")
+        exit()
     received_email = response.text
     if received_email == "[]":
         print(".", end="")
@@ -154,7 +161,7 @@ if received_email == "[]":
 print("[UM EMAIL ENCONTRADO!]")
 
 messageId = \
-received_email.split('https:\/\/www.gmailnator.com\/gmailnator.com\/messageid\/#', 2)[1].split('\\\">', 2)[0]
+    received_email.split('https:\/\/www.gmailnator.com\/gmailnator.com\/messageid\/#', 2)[1].split('\\\">', 2)[0]
 
 messageId = urllib.parse.quote_plus(messageId)
 
@@ -162,10 +169,12 @@ print("[MESSAGEID DO EMAIL!]: ", messageId)
 print("[ENVIANDO REQUEST PARA VER CONTEUDO DO EMAIL!]")
 url = "https://www.gmailnator.com/mailbox/get_single_message/"
 data = "csrf_gmailnator_token={}&action=get_message&message_id={}&email=gmailnator.com".format(csrf,
-    messageId)
-
+                                                                                               messageId)
 
 response = requests.request("POST", url, headers=headers, data=data, verify=False)
+if response.status_code != 204 and response.status_code != 200:
+    print("[ERRO CSRF]!")
+    exit()
 email = response.text
 print("[RESPONSE DO EMAIL RECEBIDO]")
 

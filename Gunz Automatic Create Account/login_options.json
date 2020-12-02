@@ -1,7 +1,7 @@
 {
     "login": {
-        "prefix": "baiano",
-        "last_number": 73
+        "prefix": "falar",
+        "last_number": 46
     },
     "password": {
         "use_same_login": true,
@@ -9,7 +9,7 @@
     },
     "proxies": {
         "http": "186.233.104.164:8080",
-        "https": "186.233.104.164:8080"
+        "https": "187.87.38.28:53281"
     },
     "csrf_gmailnator_token": "13968d5ad3ef7e6740e04fa6ab585b3a"
 }
