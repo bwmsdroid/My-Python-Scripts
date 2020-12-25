@@ -41,9 +41,17 @@ Simples:
 
 - Note que o splitted_strings_2[0] é posto entre acentos;
 - Também não esqueça de dar um output.write no splitted_strings[0], otherwise você não tera o início do código.
+- Passe no js nicefy novamente, ative todas as configurações.
+- Cole seu código e dê um ctrol+H no sublime. Substitua !![] por true e ![] por false.
+- Renomeie algumas variáveis que tu sabe o que faz (e.g.: contador)
+
 
 Btw este input é um JS obfuscado do website cs.money
 
 Also, da pra dar unpack n somente JS, mas qualquer tipo de codigo, é só dar uma modificada.
+
+
+- Pra deixar melhor tem que  substituir coisas como document["getElementById"] por document.getElementById
+
 
 03/11/2020
